@@ -26,6 +26,11 @@ class Operation implements IteratorAggregate
     /**
      * @var string
      */
+    protected $summary;
+
+    /**
+     * @var string
+     */
     protected $requestDescription = '';
 
     /**
@@ -77,6 +82,22 @@ class Operation implements IteratorAggregate
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @param string $summary
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSummary()
+    {
+        return $this->summary;
     }
 
     /**

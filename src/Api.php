@@ -36,6 +36,11 @@ class Api implements IteratorAggregate
     protected $services = [];
 
     /**
+     * @var array
+     */
+    protected $docs = [];
+
+    /**
      * @param string $name
      */
     public function setName($name)
@@ -81,6 +86,22 @@ class Api implements IteratorAggregate
     public function getAuthorization()
     {
         return $this->authorization;
+    }
+
+    /**
+     * @param array $docs
+     */
+    public function setDocs($docs)
+    {
+        $this->docs = $docs;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocs()
+    {
+        return $this->docs;
     }
 
     /**
