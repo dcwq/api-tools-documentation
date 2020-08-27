@@ -188,6 +188,11 @@ class ApiFactory
 
         $docsArray = $this->getDocumentationConfig($api);
 
+        // hide this service if flagged as hidden
+        if (!empty($docsArray['hidden'])) {
+            return false;
+        }
+
         if (isset($docsArray[$serviceClassName])) {
             $docsArray[$serviceClassName]['api-tools-rest'] = $serviceData;
             $service->setDocs($docsArray[$serviceClassName]);
@@ -231,6 +236,10 @@ class ApiFactory
             $op->setHttpMethod($httpMethod);
 
             if ($isRest) {
+                if (!empty($docsArray[$serviceClassName]['collection'][$httpMethod]['hidden'])) {
+                    continue;
+                }
+
                 $description = isset($docsArray[$serviceClassName]['collection'][$httpMethod]['description'])
                     ? $docsArray[$serviceClassName]['collection'][$httpMethod]['description']
                     : '';
@@ -261,6 +270,10 @@ class ApiFactory
             }
 
             if ($isRpc) {
+                if (!empty($docsArray[$serviceClassName][$httpMethod]['hidden'])) {
+                    continue;
+                }
+
                 $description = isset($docsArray[$serviceClassName][$httpMethod]['description'])
                     ? $docsArray[$serviceClassName][$httpMethod]['description']
                     : '';
@@ -310,6 +323,10 @@ class ApiFactory
             foreach ($serviceData['entity_http_methods'] as $httpMethod) {
                 $op = new Operation();
                 $op->setHttpMethod($httpMethod);
+
+                if (!empty($docsArray[$serviceClassName]['entity'][$httpMethod]['hidden'])) {
+                    continue;
+                }
 
                 $description = isset($docsArray[$serviceClassName]['entity'][$httpMethod]['description'])
                     ? $docsArray[$serviceClassName]['entity'][$httpMethod]['description']
