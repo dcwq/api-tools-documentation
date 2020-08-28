@@ -238,6 +238,14 @@ class ApiFactoryTest extends TestCase
 
         $this->assertSame('FooBarCollection[]/FooBar', $fields[0]->getName());
         $this->assertSame('AnotherCollection[]/FooBar', $fields[1]->getName());
+
+        $query = array_values($service->getFields('query'));
+        $this->assertCount(2, $query);
+
+        $this->assertSame('one', $query[0]->getName());
+        $this->assertSame('two', $query[1]->getName());
+        $this->assertSame('integer', $query[0]->getType());
+        $this->assertSame('string', $query[1]->getType());
     }
 
     public function testCreateRestArtistsService()

@@ -79,6 +79,18 @@ return [
     ],
     'Test\\V1\\Rest\\FooBarCollection\\Controller' => [
         'description' => 'Some general notes about the FooBarCollection rest service',
+        'collection' => [
+            'query' => [
+                'one' => [
+                    'type' => 'integer',
+                    'description' => 'First query param',
+                ],
+                'two' => [
+                    'type' => 'string',
+                    'description' => 'Second query param',
+                ],
+            ],
+        ],
     ],
     'Test\\V1\\Rpc\\Ping\\Controller' => [
         'GET' => [
