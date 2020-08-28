@@ -292,7 +292,11 @@ class ApiFactory
                 $op->setRequiresAuthorization(
                     isset($authorizations['actions'][$serviceData['action']][$httpMethod])
                     ? $authorizations['actions'][$serviceData['action']][$httpMethod]
-                    : false
+                    : (
+                        isset($authorizations['actions'][$serviceData['service_name']][$httpMethod])
+                        ? $authorizations['actions'][$serviceData['service_name']][$httpMethod]
+                        : false
+                      )
                 );
                 $op->setResponseStatusCodes($this->getStatusCodes(
                     $httpMethod,
