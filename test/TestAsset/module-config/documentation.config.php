@@ -50,6 +50,9 @@ return [
                 'request' => null,
                 'response' => null,
             ],
+            'PATCH' => [
+                'hidden' => true,
+            ],
             'description' => 'Some general notes about he FooBar collections',
         ],
         'entity' => [
